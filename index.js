@@ -166,6 +166,7 @@ CronitorClient.prototype.update = function( code, obj, callback){
 		headers: {
 			'Authorization': 'Basic ' + this.auth_header
 			},
+		body: obj,
 		json: true
 	};
 

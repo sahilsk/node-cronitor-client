@@ -1,4 +1,4 @@
-nodejs cronitor.io client
+nodejs cronitor.io client  
 -------------------------
 
 An unofficial simple asynchronous node.js client to ease working with cronitor.io API's.
