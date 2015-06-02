@@ -1,4 +1,4 @@
-node.js cronitor.io client
+nodejs cronitor.io client
 -------------------------
 
 An unofficial simple asynchronous node.js client to ease working with cronitor.io API's.
@@ -53,6 +53,7 @@ cc.new( newMonitor, function(err, body){
 	}
 });
 ```	
+
 ## Get all monitors
 
 ### Args: `all( callback)`
@@ -65,26 +66,28 @@ cc.all( function(err, body){
 			}
 		});
 ```
+
 ## Get single monitor
 
 ### Args: `get( monitor code, callback)...`
 ``` js
-cc.get('ifjd',  function(err, monitor){
+cc.get('myMonitor_code',  function(err, monitor){
 			console.log( monitor);
 		});
 ```		
 
 ## Update monitor
+
 ### Args: `update( monitor-code, monitor-obj, callback)...`
 
 ``` js
-var udpateMonitor = {...}
-cc.new( newMonitor, function(err, body){
+var updateMonitorObj = {...}
+cc.new( 'myMonitor_code', updateMonitorObj, function(err, body){
 	if( err){
 		console.log( err);
 		throw new Error( err );
 	}else{
-		console.log( "monitor updated", body.code );
+		console.log( "monitor updated", body );
 	}
 });
 ```
@@ -95,7 +98,7 @@ Things-to-do
 
 - Writing test cases
 
-License
---------
 
+License
+-----------
 MIT
