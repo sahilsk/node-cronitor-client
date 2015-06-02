@@ -17,7 +17,7 @@ var cc = new CronitorClient({
 ## Create new monitor 
 ### Args: `new( monitor-object, callback)`
 
-```
+``` js
 # Create new monitor
 
 var newMonitor = {

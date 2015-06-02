@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "sahilsk <sonukr666@gmail.com",
+  "license": "MIT",
 	"dependencies": {
 	"request": "^2.57.0",
 	"url": "^0.10.3"
