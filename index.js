@@ -87,10 +87,20 @@ CronitorClient.prototype.new = function(obj, callback){
 * @returns {Object} Array of monitors
 *
 */
-CronitorClient.prototype.all = function( callback){
+CronitorClient.prototype.all = function( filter, cb){
 
 	var finalURL = url.resolve( this.endpoint, "/v1/monitors");
 
+	var params = {};
+	var callback = null;
+	var args = Array.prototype.slice.call(arguments);
+
+	if( args.length === 1){
+		callback = args[0];
+	}else{
+		params = args[0];
+		callback = args[1];
+	}
 
 	var options = {
 		method: 'GET',
@@ -99,16 +109,17 @@ CronitorClient.prototype.all = function( callback){
 		headers: {
 			'Authorization': 'Basic ' + this.auth_header
 			},
-		json: true
+		json: true,
+		qs: params
 	};
 
 	request( options, 
 			function(err, res, body){
-
 				if( res.statusCode !== 200){
 					callback(body, null);
-				}else
+				}else{
 					callback(err, body);
+				}
 		});
 }
 
@@ -151,7 +162,7 @@ CronitorClient.prototype.get = function( code,callback){
 *
 * @params { String} monitor code
 * @params {Object} monitor info to update
-* @return {Object} monitor
+* @return {Callback} Callback object with result or error
 */
 
 CronitorClient.prototype.update = function( code, obj, callback){
@@ -180,6 +191,35 @@ CronitorClient.prototype.update = function( code, obj, callback){
 		});
 }
 
+/**
+* Delete  monitor
+*
+* @params { String} monitor code
+* @return { Callback } Callback 
+*/
 
+CronitorClient.prototype.delete = function( code, callback){
+
+	var finalURL = url.resolve( this.endpoint, "/v1/monitors/"+ code);
+
+
+	var options = {
+		method: 'DELETE',
+		url: finalURL,
+		port: 443,
+		headers: {
+			'Authorization': 'Basic ' + this.auth_header
+			},
+		json: true
+	};
+
+	request( options, 
+			function(err, res, body){
+				if( res.statusCode !== 204){
+					callback(body, null);
+				}else
+					callback(err, body);
+		});
+}
 module.exports = CronitorClient;
 
