@@ -56,11 +56,18 @@ cc.new( newMonitor, function(err, body){
 
 ## Get all monitors
 
-### Args: `all( callback)`
+### Args: `all(options, callback)`
 
 ``` js
 # Get all monitor
 cc.all( function(err, body){
+    if(!err){
+			console.log( body);
+			}
+		});
+OR
+
+cc.all( {page:2}, function(err, body){
     if(!err){
 			console.log( body);
 			}
@@ -82,7 +89,7 @@ cc.get('myMonitor_code',  function(err, monitor){
 
 ``` js
 var updateMonitorObj = {...}
-cc.new( 'myMonitor_code', updateMonitorObj, function(err, body){
+cc.update( 'myMonitor_code', updateMonitorObj, function(err, body){
 	if( err){
 		console.log( err);
 		throw new Error( err );
@@ -91,7 +98,21 @@ cc.new( 'myMonitor_code', updateMonitorObj, function(err, body){
 	}
 });
 ```
-		
+
+## Delete monitor
+
+### Args: `delete( monitor-code, callback)...`
+
+``` js
+cc.delete( 'myMonitor_code', function(err, body){
+	if( err){
+		console.log( err);
+		throw new Error( err );
+	}else{
+		console.log( "monitor deleted" );
+	}
+});
+```	
 		
 Things-to-do
 ----------
