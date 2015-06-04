@@ -1,12 +1,14 @@
 {
   "name": "cronitor-client",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sahilsk <sonukr666@gmail.com",
+  "url": "https://github.com/sahilsk/node-cronitor-client/issues",
+  "email":"sonukr666@gmail.com",
   "license": "MIT",
 	"dependencies": {
   	"request": "^2.57.0",

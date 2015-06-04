@@ -1,5 +1,6 @@
-nodejs cronitor.io client  
--------------------------
+nodejs cronitor.io client    
+
+========================
 
 An unofficial simple asynchronous node.js client to ease working with cronitor.io API's.
 
@@ -114,8 +115,17 @@ cc.delete( 'myMonitor_code', function(err, body){
 });
 ```	
 		
-Things-to-do
-----------
+
+Problem using cronitor-Client?
+
+===============================
+
+File an issue on [https://github.com/sahilsk/node-cronitor-client](https://github.com/sahilsk/node-cronitor-client)
+
+
+
+Things-to-do   
+================
 
 - Writing test cases
 
