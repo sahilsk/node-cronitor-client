@@ -1,6 +1,5 @@
-nodejs cronitor.io client    
-
-========================
+# nodejs cronitor.io client   
+---------------------------
 
 An unofficial simple asynchronous node.js client to ease working with cronitor.io API's.
 
@@ -57,7 +56,7 @@ cc.new( newMonitor, function(err, body){
 
 ## Get all monitors
 
-### Args: `all(options, callback)`
+#### Args: `all(options, callback)`
 
 ``` js
 # Get all monitor
@@ -77,7 +76,7 @@ cc.all( {page:2}, function(err, body){
 
 ## Get single monitor
 
-### Args: `get( monitor code, callback)...`
+#### Args: `get( monitor code, callback)...`
 ``` js
 cc.get('myMonitor_code',  function(err, monitor){
 			console.log( monitor);
@@ -86,7 +85,7 @@ cc.get('myMonitor_code',  function(err, monitor){
 
 ## Update monitor
 
-### Args: `update( monitor-code, monitor-obj, callback)...`
+#### Args: `update( monitor-code, monitor-obj, callback)...`
 
 ``` js
 var updateMonitorObj = {...}
@@ -102,7 +101,7 @@ cc.update( 'myMonitor_code', updateMonitorObj, function(err, body){
 
 ## Delete monitor
 
-### Args: `delete( monitor-code, callback)...`
+#### Args: `delete( monitor-code, callback)...`
 
 ``` js
 cc.delete( 'myMonitor_code', function(err, body){
@@ -114,7 +113,23 @@ cc.delete( 'myMonitor_code', function(err, body){
 	}
 });
 ```	
-		
+
+
+## Unpause monitor
+
+#### Args: `unpause( monitor-code, callback)...`
+
+``` js
+cc.unpause( 'myMonitor_code', function(err, body){
+	if( err){
+		console.log( err);
+		throw new Error( err );
+	}else{
+		console.log( "monitor unpaused" );
+	}
+});
+```	
+
 
 Problem using cronitor-Client?
 
@@ -124,8 +139,8 @@ File an issue on [https://github.com/sahilsk/node-cronitor-client](https://githu
 
 
 
-Things-to-do   
-================
+# Things-to-do   
+----------------
 
 - Writing test cases
 
