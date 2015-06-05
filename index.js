@@ -14,10 +14,11 @@ function CronitorClient (option){
 * Create new cron on cronitor.io
 *
 * @params {Object}  cron objects
+* @params {Callback} Callback (error, body)
 *
 */
 
-CronitorClient.prototype.test = function(){
+CronitorClient.prototype.test = function(callback){
 
 	var finalURL = url.resolve( this.endpoint, "/v1/monitors");
 
@@ -36,7 +37,6 @@ CronitorClient.prototype.test = function(){
 					console.log( "Got Error:  %s", err );
 					throw new Error( err);
 				}else{
-
 					if( res.statusCode === 403){
 						console.log( body);
 						console.log( "Access key invalid or absent");
@@ -44,6 +44,7 @@ CronitorClient.prototype.test = function(){
 					}
 					console.log( body);
 				}
+				callback(err, body);
 		});
 
 }
@@ -221,5 +222,39 @@ CronitorClient.prototype.delete = function( code, callback){
 					callback(err, body);
 		});
 }
+
+/**
+* Unpause  monitor
+*
+* @params { String} monitor code
+* @return { Callback } Callback 
+*/
+
+CronitorClient.prototype.unpause = function( code, callback){
+
+	var finalURL = url.resolve( this.endpoint, "/"+ code + "/pause/0");
+
+
+	var options = {
+		method: 'GET',
+		url: finalURL,
+		port: 443,
+		headers: {
+			'Authorization': 'Basic ' + this.auth_header
+			},
+		json: true
+	};
+
+	request( options, 
+			function(err, res, body){
+				if( res.statusCode !== 200){
+					callback(body, null);
+				}else
+					callback(err, body);
+		});
+}
+
+
+
 module.exports = CronitorClient;
 
