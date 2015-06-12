@@ -3,6 +3,16 @@
 
 An unofficial simple asynchronous node.js client to ease working with cronitor.io API's.
 
+# Test
+------
+
+	# Set 'ACCESS_TOKEN' in environment variable and then run tests
+		
+	$ npm install
+	$ npm install gulp -g
+	$ npm test
+
+
 How-to
 --------
 
@@ -26,7 +36,7 @@ var newMonitor = {
 	        "phones": [], 
 	        "webhooks": [], 
 	        "emails": [
-	            "sonukr.meena@practo.com"
+	            "sonukr666@xyz.com"
 	        ]
 	    }, 
 	    "rules": [
@@ -139,12 +149,8 @@ File an issue on [https://github.com/sahilsk/node-cronitor-client](https://githu
 
 
 
-# Things-to-do   
-----------------
 
-- Writing test cases
-
-
-License
+License  
 -----------
+
 MIT

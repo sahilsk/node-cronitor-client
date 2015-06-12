@@ -1,13 +1,16 @@
 var 
 	request = require("request")
 	, url = require("url")
+	, debug = require('debug')('CronitorClient')
 ;
 
 function CronitorClient (option){
-	this.access_token =  option.access_token || null;
-	this.endpoint	= option.endpoint || "https://cronitor.io/v1";
-	this.auth_header = new Buffer(this.access_token + ':').toString('base64');
-
+	var defaults = option || {};
+	if(defaults){
+		this.access_token =  defaults.access_token || null;
+		this.endpoint	= defaults.endpoint || "https://cronitor.io/v1";
+		this.auth_header = new Buffer(this.access_token + ':').toString('base64');
+	}
 }
 
 /*****
@@ -34,17 +37,18 @@ CronitorClient.prototype.test = function(callback){
 	request( options, 
 			function(err, res, body){
 				if(err){
-					console.log( "Got Error:  %s", err );
-					throw new Error( err);
+					debug( "Got Error:  %s", err );
+					callback(err, null);
 				}else{
+					debug( body);
 					if( res.statusCode === 403){
-						console.log( body);
-						console.log( "Access key invalid or absent");
-						throw new Error("Access key invalid or absent");
+						debug("Access key invalid or absent");
+						err = body;
+						body = null;
 					}
-					console.log( body);
 				}
-				callback(err, body);
+				callback(err,body);
+				
 		});
 
 }
@@ -74,11 +78,13 @@ CronitorClient.prototype.new = function(obj, callback){
 
 	request( options, 
 			function(err, res, body){
+				debug(err, body);
 				if( res.statusCode !== 201){
 					callback(body, null);
 				}else{
 					callback(err, body);
 				}
+
 		});
 }
 
@@ -116,7 +122,9 @@ CronitorClient.prototype.all = function( filter, cb){
 
 	request( options, 
 			function(err, res, body){
+				debug(body);
 				if( res.statusCode !== 200){
+
 					callback(body, null);
 				}else{
 					callback(err, body);
